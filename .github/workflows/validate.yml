@@ -1,44 +1,35 @@
 name: validate
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       test:
+        description: 'Test'
         required: false
-        type: string
-        default: complete
+        default: 'complete'
       workload:
+        description: 'Workload'
         required: true
-        type: string
+        default: 'demo'
       environment:
+        description: 'Environment'
         required: true
-        type: string
-    secrets:
-      ARM_CLIENT_ID:
-        required: true
-      ARM_CLIENT_SECRET:
-        required: true
-      ARM_SUBSCRIPTION_ID:
-        required: true
-      ARM_TENANT_ID:
-        required: true
-      AZURE_CREDENTIALS:
-        required: true
+        default: 'dev'
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  WORKLOAD: ${{ github.event.inputs.workload }}
+  ENVIRONMENT: ${{ github.event.inputs.environment }}
 
 jobs:
   validate:
     name: validate
     runs-on: ubuntu-latest
     environment : development
-    env:
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-      WORKLOAD: ${{ inputs.workload }}
-      ENVIRONMENT: ${{ inputs.environment }}
-
     steps:
       - uses: actions/checkout@v3
 
@@ -73,9 +64,8 @@ jobs:
 
       - name: run tests
         run: |
-          if [ "${{ inputs.test }}" = "test_extended" ]; then
-            make ${{ inputs.test }}
+          if [ "${{ github.event.inputs.test }}" = "test_extended" ]; then
+            make ${{ github.event.inputs.test }}
           else
-            make test USECASE=${{ inputs.test }}
+            make test USECASE=${{ github.event.inputs.test }}
           fi
-
