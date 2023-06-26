@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/CloudNationHQ/az-module-tf-vnet/compare/v0.2.0...v0.3.0) (2023-06-26)
+
+
+### Features
+
+* small refactor validation workflow ([d730a20](https://github.com/CloudNationHQ/az-module-tf-vnet/commit/d730a204a5288740058b37b1cb55c343966aadb9))
+
+
+### Bug Fixes
+
+* corrected some typo's in documentation ([9a9cfeb](https://github.com/CloudNationHQ/az-module-tf-vnet/commit/9a9cfeb22b058c3c2716a11bf69cd200396f02d4))
+
 ## [0.2.0](https://github.com/CloudNationHQ/az-module-tf-vnet/compare/v0.1.0...v0.2.0) (2023-06-26)
 
 
