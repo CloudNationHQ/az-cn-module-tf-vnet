@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/CloudNationHQ/az-module-tf-vnet/compare/v0.3.0...v0.4.0) (2023-06-26)
+
+
+### Features
+
+* add additional linting config ([a4696c1](https://github.com/CloudNationHQ/az-module-tf-vnet/commit/a4696c11e0ba19e9b08066ab33dc4927b1635785))
+* cleanup ([fb2c980](https://github.com/CloudNationHQ/az-module-tf-vnet/commit/fb2c980fd6078fb3fbdf97e33b1d5b0d35469c03))
+
 ## [0.3.0](https://github.com/CloudNationHQ/az-module-tf-vnet/compare/v0.2.0...v0.3.0) (2023-06-26)
 
 
