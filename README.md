@@ -19,7 +19,6 @@ module "network" {
 
   workload       = var.workload
   environment    = var.environment
-  location_short = module.region.location_short
 
   vnet = {
     location      = module.rg.group.location
@@ -42,7 +41,6 @@ module "network" {
 
   workload       = var.workload
   environment    = var.environment
-  location_short = module.region.location_short
 
   vnet = {
     location      = module.rg.group.location
@@ -69,7 +67,6 @@ module "network" {
 
   workload       = var.workload
   environment    = var.environment
-  location_short = module.region.location_short
 
   vnet = {
     location      = module.rg.group.location
@@ -102,7 +99,6 @@ module "network" {
 
   workload       = var.workload
   environment    = var.environment
-  location_short = module.region.location_short
 
   vnet = {
     cidr          = ["10.18.0.0/16"]
@@ -178,7 +174,7 @@ module "network" {
 
 ## Outputs
 
-| Name | Description | w
+| Name | Description |
 | :-- | :-- |
 | `vnet` | contains all vnet configuration |
 | `subnets` | contains all subnets configuration |
