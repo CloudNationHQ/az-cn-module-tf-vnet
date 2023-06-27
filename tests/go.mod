@@ -1,4 +1,4 @@
-module github.com/cloudnationhq/az-module-tf-vnet
+module github.com/cloudnationhq/az-cn-module-tf-vnet
 
 go 1.20
 

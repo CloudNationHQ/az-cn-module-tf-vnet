@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cloudnationhq/az-module-tf-vnet/shared"
+	"github.com/cloudnationhq/az-cn-module-tf-vnet/shared"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 

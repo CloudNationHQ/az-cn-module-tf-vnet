@@ -6,7 +6,7 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/services/network/mgmt/2020-03-01/network"
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/cloudnationhq/az-module-tf-vnet/shared"
+	"github.com/cloudnationhq/az-cn-module-tf-vnet/shared"
 	"github.com/gruntwork-io/terratest/modules/azure"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/require"
