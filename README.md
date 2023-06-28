@@ -15,7 +15,7 @@ The below examples shows the usage when consuming the module:
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-module-tf-vnet"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   workload       = var.workload
   environment    = var.environment
@@ -37,7 +37,7 @@ module "network" {
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-module-tf-vnet"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   workload       = var.workload
   environment    = var.environment
@@ -63,7 +63,7 @@ module "network" {
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-module-tf-vnet"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   workload       = var.workload
   environment    = var.environment
@@ -95,7 +95,7 @@ module "network" {
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-module-tf-vnet"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   workload       = var.workload
   environment    = var.environment
@@ -121,7 +121,7 @@ module "network" {
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-module-tf-vnet"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   workload       = var.workload
   environment    = var.environment
@@ -187,11 +187,11 @@ Before running these tests, ensure that both Go and Terraform are installed on y
 
 ## Authors
 
-Module is maintained by [these awesome contributors](https://github.com/cloudnationhq/az-module-tf-vnet/graphs/contributors).
+Module is maintained by [these awesome contributors](https://github.com/cloudnationhq/az-cn-module-tf-vnet/graphs/contributors).
 
 ## License
 
-MIT Licensed. See [LICENSE](https://github.com/cloudnationhq/az-module-tf-vnet/blob/main/LICENSE) for full details.
+MIT Licensed. See [LICENSE](https://github.com/cloudnationhq/az-cn-module-tf-vnet/blob/main/LICENSE) for full details.
 
 ## Reference
 
