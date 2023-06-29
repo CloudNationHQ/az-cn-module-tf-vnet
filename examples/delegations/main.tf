@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 module "rg" {
-  source = "github.com/cloudnationhq/az-module-tf-rg"
+  source = "github.com/cloudnationhq/az-cn-module-tf-rg"
 
   environment = var.environment
 
