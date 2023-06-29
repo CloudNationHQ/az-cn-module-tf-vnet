@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.4.1...v0.5.0) (2023-06-29)
+
+
+### Features
+
+* make use of caller workflows ([#15](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/15)) ([b883ef3](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/b883ef3cbdd072612d04f58bb5bafb9aa859a788))
+
 ## [0.4.1](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.4.0...v0.4.1) (2023-06-29)
 
 
