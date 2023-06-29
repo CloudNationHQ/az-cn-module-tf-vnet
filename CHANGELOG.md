@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.4.0...v0.4.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* replace wrong module references ([7c6d45b](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/7c6d45b3840a5c4fda9b4d1b72aa4785f7e23362))
+* typo output name ([9ee02c4](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/9ee02c46e064229b3816eba28062babaf5e7d8a6))
+
 ## [0.4.0](https://github.com/CloudNationHQ/az-module-tf-vnet/compare/v0.3.0...v0.4.0) (2023-06-26)
 
 
