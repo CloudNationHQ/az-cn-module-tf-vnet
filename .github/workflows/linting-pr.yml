@@ -7,7 +7,6 @@ on:
       - edited
       - synchronize
 
-
 jobs:
   linting:
     name: linting-pr
