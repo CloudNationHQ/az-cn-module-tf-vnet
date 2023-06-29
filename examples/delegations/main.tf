@@ -22,7 +22,7 @@ module "network" {
 
   vnet = {
     location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.group.demo.name
+    resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
     subnets = {
       sn1 = {
