@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.5.0...v0.6.0) (2023-06-30)
+
+
+### Features
+
+* solve linting issues ([#17](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/17)) ([533cd4c](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/533cd4cbbaea5a4eca0c8391fe12a094b4861f63))
+
 ## [0.5.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.4.1...v0.5.0) (2023-06-29)
 
 
