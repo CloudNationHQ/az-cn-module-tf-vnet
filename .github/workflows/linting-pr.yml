@@ -9,5 +9,5 @@ on:
 
 jobs:
   linting:
-    name: linting-pr
+    name: linting
     uses: cloudnationhq/az-cn-shared-tf-workflows/.github/workflows/linting.yml@main
