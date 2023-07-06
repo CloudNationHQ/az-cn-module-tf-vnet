@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/Azure/azure-sdk-for-go v51.0.0+incompatible
 	github.com/Azure/go-autorest/autorest v0.11.29
-	github.com/gruntwork-io/terratest v0.43.4
+	github.com/gruntwork-io/terratest v0.43.6
 	github.com/stretchr/testify v1.8.4
 )
 
@@ -68,6 +68,6 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
 	google.golang.org/grpc v1.53.0 // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
+	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
