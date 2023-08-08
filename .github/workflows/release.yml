@@ -7,6 +7,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  release_please:
-    name: release
+  checks:
     uses: cloudnationhq/az-cn-shared-tf-workflows/.github/workflows/release.yml@main
