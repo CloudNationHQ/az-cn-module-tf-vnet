@@ -2,48 +2,64 @@ package main
 
 import (
 	"context"
+	"strings"
 	"testing"
-
-	"github.com/Azure/azure-sdk-for-go/services/network/mgmt/2020-03-01/network"
-	"github.com/Azure/go-autorest/autorest"
+	"github.com/stretchr/testify/assert"
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/network/armnetwork"
 	"github.com/cloudnationhq/az-cn-module-tf-vnet/shared"
-	"github.com/gruntwork-io/terratest/modules/azure"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/require"
 )
 
 func TestVirtualNetwork(t *testing.T) {
-	t.Parallel()
+	t.Run("VerifyVirtualNetworkAndSubnets", func(t *testing.T) {
+		t.Parallel()
 
-	tfOpts := shared.GetTerraformOptions("../examples/complete")
+		tfOpts := shared.GetTerraformOptions("../examples/complete")
+		defer shared.Cleanup(t, tfOpts)
+		terraform.InitAndApply(t, tfOpts)
 
-	defer shared.Cleanup(t, tfOpts)
-	terraform.InitAndApply(t, tfOpts)
+		vnet := terraform.OutputMap(t, tfOpts, "vnet")
+		virtualNetworkName, ok := vnet["name"]
+		require.True(t, ok, "Virtual network name not found in terraform output")
 
-	vnet := terraform.OutputMap(t, tfOpts, "vnet")
-	virtualNetworkName, ok := vnet["name"]
-	require.True(t, ok, "Virtual network name not found in terraform output")
+		resourceGroupName, ok := vnet["resource_group_name"]
+		require.True(t, ok, "Resource group name not found in terraform output")
 
-	resourceGroupName, ok := vnet["resource_group_name"]
-	require.True(t, ok, "Resource group name not found in terraform output")
+		subscriptionID := terraform.Output(t, tfOpts, "subscriptionId")
+		require.NotEmpty(t, subscriptionID, "Subscription ID not found in terraform output")
 
-	subscriptionID := terraform.Output(t, tfOpts, "subscriptionId")
-	require.NotEmpty(t, subscriptionID, "Subscription ID not found in terraform output")
+		cred, err := azidentity.NewDefaultAzureCredential(nil)
+		if err != nil {
+			t.Fatalf("failed to get credentials: %+v", err)
+		}
 
-	authorizer, err := azure.NewAuthorizer()
-	require.NoError(t, err)
+		virtualNetworkClient, err := armnetwork.NewVirtualNetworksClient(subscriptionID, cred, nil)
+		if err != nil {
+			t.Fatalf("failed to create virtual network client: %+v", err)
+		}
 
-	virtualNetworkClient := network.NewVirtualNetworksClient(subscriptionID)
-	virtualNetworkClient.Authorizer = *authorizer
+		virtualNetworkResponse, err := virtualNetworkClient.Get( context.Background(), resourceGroupName, virtualNetworkName, nil)
+		if err != nil {
+			t.Fatalf("failed to get virtual network: %+v", err)
+		}
 
-	virtualNetwork, err := virtualNetworkClient.Get(context.Background(), resourceGroupName, virtualNetworkName, "")
-	require.NoError(t, err)
+		virtualNetwork := virtualNetworkResponse.VirtualNetwork
 
-	verifyVirtualNetwork(t, virtualNetworkName, &virtualNetwork)
-	verifySubnetsExist(t, subscriptionID, resourceGroupName, virtualNetworkName, tfOpts, *authorizer)
+		t.Run("VerifyVirtualNetwork", func(t *testing.T) {
+			verifyVirtualNetwork(t, virtualNetworkName, &virtualNetwork)
+		})
+
+		t.Run("VerifySubnetsExist", func(t *testing.T) {
+			verifySubnetsExist(t, subscriptionID, resourceGroupName, virtualNetworkName, tfOpts)
+		})
+	})
 }
 
-func verifyVirtualNetwork(t *testing.T, virtualNetworkName string, virtualNetwork *network.VirtualNetwork) {
+func verifyVirtualNetwork(t *testing.T, virtualNetworkName string, virtualNetwork *armnetwork.VirtualNetwork) {
+	t.Helper()
+
 	require.Equal(
 		t,
 		virtualNetworkName,
@@ -54,44 +70,75 @@ func verifyVirtualNetwork(t *testing.T, virtualNetworkName string, virtualNetwor
 	require.Equal(
 		t,
 		"Succeeded",
-		string(virtualNetwork.ProvisioningState),
+		string(*virtualNetwork.Properties.ProvisioningState),
 		"Virtual network provisioning state is not 'Succeeded'",
+	)
+
+	require.True(
+		t,
+		strings.HasPrefix(virtualNetworkName, "vnet"),
+		"Virtual network name does not begin with the right abbreviation",
 	)
 }
 
-func verifySubnetsExist(
-	t *testing.T,
-	subscriptionID string,
-	resourceGroupName string,
-	virtualNetworkName string,
-	tfOpts *terraform.Options,
-	authorizer autorest.Authorizer,
-) {
-	subnetClient := network.NewSubnetsClient(subscriptionID)
-	subnetClient.Authorizer = authorizer
+func verifySubnetsExist(t *testing.T, subscriptionID string, resourceGroupName string, virtualNetworkName string, tfOpts *terraform.Options) {
+	t.Helper()
 
-	subnetsPage, err := subnetClient.ListComplete(context.Background(), resourceGroupName, virtualNetworkName)
-	require.NoError(t, err)
+	cred, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil {
+		t.Fatalf("failed to get credentials: %+v", err)
+	}
+
+	subnetClient, err := armnetwork.NewSubnetsClient(subscriptionID, cred, nil)
+	if err != nil {
+		t.Fatalf("failed to create subnet client: %+v", err)
+	}
+
+	pager := subnetClient.NewListPager(resourceGroupName, virtualNetworkName, nil)
 
 	subnetsOutput := terraform.OutputMap(t, tfOpts, "subnets")
-	require.NotEmpty(t, subnetsOutput, "Subnets output is empty")
+	assert.NotEmpty(t, subnetsOutput, "Subnets output is empty")
 
-	for _, v := range *subnetsPage.Response().Value {
-		subnetName := *v.Name
-		require.NotEmpty(t, subnetName, "Subnet name not found in azure response")
+	for {
+		page, err := pager.NextPage(context.Background())
+		if err != nil {
+			t.Fatalf("Failed to list subnets: %v", err)
+		}
 
-		require.Contains(
-			t,
-			subnetsOutput,
-			subnetName,
-			"Subnet name %s not found in Terraform output",
-			subnetName,
-		)
+		for _, subnet := range page.Value {
+			subnetName := *subnet.Name
+			assert.NotEmpty(
+				t,
+				subnetName,
+				"Subnet name not found in azure response",
+			)
 
-		require.NotNil(
-			t,
-			v.NetworkSecurityGroup,
-			"No network security group association found for subnet %s", subnetName,
-		)
+			assert.Contains(
+				t,
+				subnetsOutput,
+				subnetName,
+				"Subnet name %s not found in Terraform output",
+				subnetName,
+			)
+
+			assert.NotNil(
+				t,
+				subnet.Properties.NetworkSecurityGroup,
+				"No network security group association found for subnet %s",
+				subnetName,
+			)
+
+			//FIX: validate terraform output instead of sdk response
+			assert.True(
+				t,
+				strings.HasPrefix(*subnet.Name, "snet"),
+				"Subnet name %s does not begin with the right abbreviation",
+				subnetName,
+			)
+		}
+
+		if page.NextLink == nil || len(*page.NextLink) == 0 {
+			break
+		}
 	}
 }
