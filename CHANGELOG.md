@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.6.0...v0.7.0) (2023-08-08)
+
+
+### Features
+
+* **deps:** bump github.com/gruntwork-io/terratest in /tests ([#19](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/19)) ([d5d93a4](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/d5d93a44694c3e68b7e7bb9aa22a6b14f50baf47))
+* **deps:** bump google.golang.org/grpc from 1.51.0 to 1.53.0 in /tests ([#21](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/21)) ([dcb7ef0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/dcb7ef0fc30858d5b70d50faa5b3ca9a91fad87b))
+* removed deprecated sdk and tests are now using the new one ([#26](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/26)) ([2e26202](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/2e262027851828ed1c990923d20e2d23d4028437))
+
 ## [0.6.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.5.0...v0.6.0) (2023-06-30)
 
 
