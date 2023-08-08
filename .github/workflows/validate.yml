@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  checks:
+  build:
     uses: cloudnationhq/az-cn-shared-tf-workflows/.github/workflows/validate.yml@main
     with:
       #test: delegations
