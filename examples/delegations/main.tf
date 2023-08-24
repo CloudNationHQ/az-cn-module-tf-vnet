@@ -30,7 +30,7 @@ module "network" {
         delegations = {
           sql = {
             name = "Microsoft.Sql/managedInstances"
-            service_actions = [
+            actions = [
               "Microsoft.Network/virtualNetworks/subnets/join/action",
               "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
               "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action",
