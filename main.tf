@@ -45,7 +45,7 @@ resource "azurerm_subnet" "subnets" {
 
       service_delegation {
         name    = delegation.value.name
-        actions = try(lookup(delegation.value, "service_actions", []), [])
+        actions = try(lookup(delegation.value, "actions", []), [])
       }
     }
   }
