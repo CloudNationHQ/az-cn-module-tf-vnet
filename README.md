@@ -25,17 +25,16 @@ The below examples shows the usage when consuming the module:
 module "network" {
   source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
-  workload       = var.workload
-  environment    = var.environment
+  naming = local.naming
 
   vnet = {
-    location      = module.rg.group.location
-    resourcegroup = module.rg.group.name
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
+
     subnets = {
-      sn1 = {
-        cidr = ["10.18.1.0/24"]
-      }
+      sn1 = { cidr = ["10.18.1.0/24"] }
     }
   }
 }
@@ -47,13 +46,14 @@ module "network" {
 module "network" {
   source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
-  workload       = var.workload
-  environment    = var.environment
+  naming = local.naming
 
   vnet = {
-    location      = module.rg.group.location
-    resourcegroup = module.rg.group.name
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
+
     subnets = {
       demo = {
         cidr = ["10.18.3.0/24"]
@@ -73,13 +73,14 @@ module "network" {
 module "network" {
   source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
-  workload       = var.workload
-  environment    = var.environment
+  naming = local.naming
 
   vnet = {
-    location      = module.rg.group.location
-    resourcegroup = module.rg.group.name
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
+
     subnets = {
       sn1 = {
         cidr = ["10.18.1.0/24"]
@@ -94,6 +95,12 @@ module "network" {
           }
         }
       }
+      sn2 = {
+        cidr = ["10.18.2.0/24"]
+        delegations = {
+          web = { name = "Microsoft.Web/serverFarms" }
+        }
+      }
     }
   }
 }
@@ -105,13 +112,15 @@ module "network" {
 module "network" {
   source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
-  workload       = var.workload
-  environment    = var.environment
+  naming = local.naming
 
   vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
-    location      = module.rg.group.location
-    resourcegroup = module.rg.group.name
+
+
     subnets = {
       sn1 = {
         cidr = ["10.18.1.0/24"]
@@ -131,14 +140,14 @@ module "network" {
 module "network" {
   source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
-  workload       = var.workload
-  environment    = var.environment
-  location_short = module.region.location_short
+  naming = local.naming
 
   vnet = {
-    location      = module.rg.group.location
-    resourcegroup = module.rg.group.name
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
+
     subnets = {
       sn1 = {
         cidr = ["10.18.1.0/24"]
@@ -153,13 +162,11 @@ module "network" {
           }
         }
       }
-      sn2 = {
-        cidr = ["10.18.2.0/24"]
-      }
     }
   }
 }
 ````
+
 ## Resources
 
 | Name | Type |
@@ -177,8 +184,7 @@ module "network" {
 | Name | Description | Type | Required |
 | :-- | :-- | :-- | :-- |
 | `vnet` | describes vnet related configuration | object | yes |
-| `workload` | contains the workload name used, for naming convention | string | yes |
-| `environment` | contains shortname of the environment used for naming convention | string | yes |
+| `naming` | contains naming convention | string | yes |
 
 ## Outputs
 
@@ -214,3 +220,4 @@ MIT Licensed. See [LICENSE](https://github.com/cloudnationhq/az-cn-module-tf-vne
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/virtual-network/)
 - [Rest Api](https://learn.microsoft.com/en-us/rest/api/virtual-network/)
+- [Rest Api Specs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/network/resource-manager/Microsoft.Network/stable/2023-04-01/virtualNetwork.json)
