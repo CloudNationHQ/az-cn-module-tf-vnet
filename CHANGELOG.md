@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.8.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.7.0...v0.8.0) (2023-08-24)
+
+
+### Features
+
+* add consistent naming ([#33](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/33)) ([15a2be3](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/15a2be338e96d1b1492a89f6c879463e070f2a8c))
+* add encryption support ([#29](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/29)) ([06d4bed](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/06d4bed2ffd80f84efe7ffcf7774502b0bcc957a))
+* **deps:** bump github.com/Azure/azure-sdk-for-go/sdk/azidentity ([#28](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/28)) ([2a17583](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/2a17583015a7b88e6ea15941590a7021ed8af4d9))
+* **deps:** bump github.com/gruntwork-io/terratest in /tests ([#27](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/27)) ([fa69e36](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/fa69e367709b0ecd7719ac45fd3e1393e210acd0))
+
+
+### Bug Fixes
+
+* changed name on subnet delegations service actions ([#32](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/32)) ([488cbf0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/488cbf0e6f7012e124894c2c9484446c8f6cafed))
+
 ## [0.7.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.6.0...v0.7.0) (2023-08-08)
 
 
