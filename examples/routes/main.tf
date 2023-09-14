@@ -32,16 +32,30 @@ module "network" {
 
     subnets = {
       sn1 = {
-        cidr = ["10.18.1.0/24"]
+        cidr        = ["10.18.1.0/24"]
+        route_table = "shd"
+      },
+      sn2 = {
+        cidr        = ["10.18.2.0/24"]
+        route_table = "shd"
+      },
+      sn3 = {
+        cidr = ["10.18.3.0/24"]
+        route = {
+          routes = {
+            rt3 = {
+              address_prefix = "storage"
+              next_hop_type  = "Internet"
+            }
+          }
+        }
+      }
+    }
+
+    route_tables = {
+      shd = {
         routes = {
-          udr1 = {
-            address_prefix = "Storage"
-            next_hop_type  = "Internet"
-          }
-          udr2 = {
-            address_prefix = "SqlManagement"
-            next_hop_type  = "Internet"
-          }
+          rt1 = { address_prefix = "0.0.0.0/0", next_hop_type = "Internet" }
         }
       }
     }

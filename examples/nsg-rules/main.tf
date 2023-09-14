@@ -22,14 +22,11 @@ module "rg" {
 module "network" {
   source = "../../"
 
-  naming = local.naming
-
   vnet = {
     name          = module.naming.virtual_network.name
+    cidr          = ["10.18.0.0/16"]
     location      = module.rg.groups.demo.location
     resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
 
     subnets = {
       sn1 = {
