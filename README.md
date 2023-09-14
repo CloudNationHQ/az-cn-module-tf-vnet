@@ -16,6 +16,7 @@ A primary goal is to utilize keys and values in the object that correspond to th
 - support for multiple service endpoints and delegations, including actions
 - utilization of terratest for robust validation.
 - route table support with multiple user defined routes
+- association of multiple subnets with a single route table
 
 The below examples shows the usage when consuming the module:
 
@@ -134,7 +135,7 @@ module "network" {
 }
 ```
 
-## Usage: routes
+## Usage: route table
 
 ```hcl
 module "network" {
@@ -152,12 +153,8 @@ module "network" {
       sn1 = {
         cidr = ["10.18.1.0/24"]
         routes = {
-          udr1 = {
+          rt1 = {
             address_prefix = "Storage"
-            next_hop_type  = "Internet"
-          }
-          udr2 = {
-            address_prefix = "SqlManagement"
             next_hop_type  = "Internet"
           }
         }
@@ -166,6 +163,42 @@ module "network" {
   }
 }
 ````
+
+## Usage: route table multiple subnets
+
+```hcl
+module "network" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+
+  naming = local.naming
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+
+    subnets = {
+      sn1 = {
+        cidr        = ["10.18.1.0/24"]
+        route_table = "shd"
+      },
+      sn2 = {
+        cidr        = ["10.18.2.0/24"]
+        route_table = "shd"
+      }
+    }
+
+    route_tables = {
+      shd = {
+        routes = {
+          rt1 = { address_prefix = "0.0.0.0/0", next_hop_type = "Internet" }
+        }
+      }
+    }
+  }
+}
+```
 
 ## Resources
 
@@ -207,6 +240,12 @@ The second variation is an extended test. This test performs additional validati
 The third variation allows for specific deployment tests. By providing a unique test name in the github workflow, it overrides the default extended test, executing the specific deployment test instead.
 
 Each of these tests contributes to the robustness and resilience of the module. They ensure the module performs consistently and accurately under different scenarios and configurations.
+
+## Notes
+
+Using a dedicated module, we've developed a naming convention for resources that's based on specific regular expressions for each type, ensuring correct abbreviations and offering flexibility with multiple prefixes and suffixes
+
+Full examples detailing all usages, along with integrations with dependency modules, are located in the examples directory
 
 ## Authors
 

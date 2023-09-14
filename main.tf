@@ -97,12 +97,31 @@ resource "azurerm_subnet_network_security_group_association" "nsg_as" {
 resource "azurerm_route_table" "rt" {
   for_each = {
     for rt in local.subnets : rt.subnet_key => rt
-    if can(rt.routes) && length(rt.routes) > 0
+    if try(length(rt.route_table), 0) > 0
   }
 
   name                = each.value.rt_name
   resource_group_name = var.vnet.resourcegroup
   location            = each.value.location
+
+  dynamic "route" {
+    for_each = each.value.route_table.routes
+
+    content {
+      name                   = route.key
+      address_prefix         = lookup(route.value, "address_prefix", null)
+      next_hop_type          = lookup(route.value, "next_hop_type", null)
+      next_hop_in_ip_address = lookup(route.value, "next_hop_in_ip_address", null)
+    }
+  }
+}
+
+resource "azurerm_route_table" "shd_rt" {
+  for_each = try(var.vnet.route_tables, {})
+
+  name                = try(each.value.name, "${var.naming.route_table}-${each.key}")
+  resource_group_name = var.vnet.resourcegroup
+  location            = var.vnet.location
 
   dynamic "route" {
     for_each = each.value.routes
@@ -120,12 +139,9 @@ resource "azurerm_route_table" "rt" {
 resource "azurerm_subnet_route_table_association" "rt_as" {
   for_each = {
     for rt in local.subnets : rt.subnet_key => rt
-    if can(rt.routes) && length(rt.routes) > 0
+    if rt.route_table != null || rt.shd_route_table != null
   }
 
-
   subnet_id      = azurerm_subnet.subnets[each.key].id
-  route_table_id = azurerm_route_table.rt[each.key].id
+  route_table_id = each.value.route_table != null ? azurerm_route_table.rt[each.key].id : azurerm_route_table.shd_rt[each.value.shd_route_table].id
 }
-
-
