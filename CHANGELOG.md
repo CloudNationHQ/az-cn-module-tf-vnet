@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.8.0...v0.9.0) (2023-09-14)
+
+
+### Features
+
+* **deps:** bump github.com/gruntwork-io/terratest in /tests ([#36](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/36)) ([7961b48](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/7961b4894b890a80fd1915714b96c21471683842))
+* multiple subnets can now be associated with a single route table ([#38](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/38)) ([9bced58](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/9bced5827f9b82056ff6c4f942416a1618d9f475))
+
 ## [0.8.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.7.0...v0.8.0) (2023-08-24)
 
 
