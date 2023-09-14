@@ -164,7 +164,7 @@ module "network" {
 }
 ```
 
-> In situations where several subnets should share the same route table, the following configuration can be employed :
+In situations where several subnets should share the same route table, the following configuration can be employed :
 
 ```hcl
 module "network" {
@@ -243,9 +243,9 @@ Each of these tests contributes to the robustness and resilience of the module. 
 
 ## Notes
 
-> Using a dedicated module, we've developed a naming convention for resources that's based on specific regular expressions for each type, ensuring correct abbreviations and offering flexibility with multiple prefixes and suffixes
+Using a dedicated module, we've developed a naming convention for resources that's based on specific regular expressions for each type, ensuring correct abbreviations and offering flexibility with multiple prefixes and suffixes
 
-> Full examples detailing all usages, along with integrations with dependency modules, are located in the examples directory
+Full examples detailing all usages, along with integrations with dependency modules, are located in the examples directory
 
 ## Authors
 
