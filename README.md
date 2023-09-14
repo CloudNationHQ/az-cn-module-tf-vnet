@@ -164,7 +164,7 @@ module "network" {
 }
 ````
 
-## Usage: route table multiple subnets
+In situations where several subnets should share the same route table, the following configuration can be employed
 
 ```hcl
 module "network" {
