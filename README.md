@@ -14,7 +14,7 @@ A primary goal is to utilize keys and values in the object that correspond to th
 
 - an individual network security group for each subnet, with the ability to handle multiple rules
 - support for multiple service endpoints and delegations, including actions
-- utilization of terratest for robust validation.
+- utilization of terratest for robust validation
 - route table support with multiple user defined routes
 - association of multiple subnets with a single route table
 
