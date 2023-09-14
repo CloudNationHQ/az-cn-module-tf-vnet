@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.9.0...v0.10.0) (2023-09-14)
+
+
+### Features
+
+* update documentation ([493556b](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/493556b3778957f187be7c1c8337b48e87156fdb))
+* update documentation ([#39](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/39)) ([23e434f](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/23e434fa4bbcf698fbe48e32394c21f281a7c16b))
+
 ## [0.9.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.8.0...v0.9.0) (2023-09-14)
 
 
