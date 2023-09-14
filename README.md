@@ -162,12 +162,11 @@ module "network" {
     }
   }
 }
-````
-
-
+```
+<br>
 > [!NOTE]
 > In situations where several subnets should share the same route table, the following configuration can be employed :
-
+<br>
 
 ```hcl
 module "network" {
