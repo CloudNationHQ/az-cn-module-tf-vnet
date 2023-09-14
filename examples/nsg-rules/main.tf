@@ -22,6 +22,8 @@ module "rg" {
 module "network" {
   source = "../../"
 
+  naming = local.naming
+
   vnet = {
     name          = module.naming.virtual_network.name
     cidr          = ["10.18.0.0/16"]
@@ -39,4 +41,3 @@ module "network" {
     }
   }
 }
-
