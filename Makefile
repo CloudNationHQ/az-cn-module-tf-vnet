@@ -1,12 +1,9 @@
-.PHONY: test test_local test_extended
+.PHONY: test test_extended
 
-export USECASE
-
-test_extended:
-	cd tests && go test -v -timeout 60m -run TestVirtualNetwork ./vnet_extended_test.go
+export TF_PATH
 
 test:
-	cd tests && go test -v -timeout 60m -run TestApplyNoError/$(USECASE) ./vnet_test.go
+	cd tests && go test -v -timeout 60m -run TestApplyNoError/$(TF_PATH) ./vnet_test.go
 
-test_local:
+test_extended:
 	cd tests && env go test -v -timeout 60m -run TestVirtualNetwork ./vnet_extended_test.go

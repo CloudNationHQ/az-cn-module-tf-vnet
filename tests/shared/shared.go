@@ -22,7 +22,6 @@ func GetTerraformOptions(terraformDir string) *terraform.Options {
 	return &terraform.Options{
 		TerraformDir: terraformDir,
 		NoColor:      true,
-		Parallelism:  2,
 	}
 }
 
