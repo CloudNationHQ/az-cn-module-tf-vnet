@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.10.0...v0.11.0) (2023-09-16)
+
+
+### Features
+
+* route tables are optional now and small cleanups ([#43](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/43)) ([b25b5b4](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/b25b5b461a3045ceec5fb73a77762d7dd4bcbc2c))
+
 ## [0.10.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.9.0...v0.10.0) (2023-09-14)
 
 
