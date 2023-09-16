@@ -145,4 +145,3 @@ resource "azurerm_subnet_route_table_association" "rt_as" {
   subnet_id      = azurerm_subnet.subnets[each.key].id
   route_table_id = each.value.route_table != null ? azurerm_route_table.rt[each.key].id : azurerm_route_table.shd_rt[each.value.shd_route_table].id
 }
-
