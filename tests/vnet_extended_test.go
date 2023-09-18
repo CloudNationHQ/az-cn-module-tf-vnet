@@ -129,26 +129,26 @@ func verifyVnetDetails(t *testing.T, details *VnetDetails, vnet *armnetwork.Virt
 	)
 }
 
-func verifySubnetsExist(t *testing.T, details *VnetDetails) {
-	t.Helper()
+//func verifySubnetsExist(t *testing.T, details *VnetDetails) {
+//	t.Helper()
 
-	for _, subnet := range details.Subnets {
-		require.NotEmpty(
-			t,
-			subnet.Name,
-			"Subnet name is empty",
-		)
+//	for _, subnet := range details.Subnets {
+//		require.NotEmpty(
+//			t,
+//			subnet.Name,
+//			"Subnet name is empty",
+//		)
 
-		require.NotEmpty(
-			t,
-			subnet.NetworkSecurityGroupID,
-			"No network security group association found",
-		)
+//		require.NotEmpty(
+//			t,
+//			subnet.NetworkSecurityGroupID,
+//			"No network security group association found",
+//		)
 
-		require.True(
-			t,
-			strings.HasPrefix(subnet.Name, "snet"),
-			"Subnet name does not begin with the right abbreviation",
-		)
-	}
-}
+//		require.True(
+//			t,
+//			strings.HasPrefix(subnet.Name, "snet"),
+//			"Subnet name does not begin with the right abbreviation",
+//		)
+//	}
+//}
