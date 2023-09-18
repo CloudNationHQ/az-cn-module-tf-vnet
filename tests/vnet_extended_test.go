@@ -56,14 +56,18 @@ func (details *VnetDetails) GetSubnets(t *testing.T, client *armnetwork.SubnetsC
 	return subnets
 }
 
-func (setup *ClientSetup) InitializeNetworkClients(t *testing.T, cred *azidentity.DefaultAzureCredential) {
+func (setup *ClientSetup) InitializeVirtualNetworkClient(t *testing.T, cred *azidentity.DefaultAzureCredential) {
 	var err error
 	setup.VirtualNetworkClient, err = armnetwork.NewVirtualNetworksClient(setup.SubscriptionID, cred, nil)
 	require.NoError(t, err, "Failed to initialize virtual network client")
+}
 
+func (setup *ClientSetup) InitializeSubnetsClient(t *testing.T, cred *azidentity.DefaultAzureCredential) {
+	var err error
 	setup.SubnetsClient, err = armnetwork.NewSubnetsClient(setup.SubscriptionID, cred, nil)
 	require.NoError(t, err, "Failed to initialize subnets client")
 }
+
 
 func TestVirtualNetwork(t *testing.T) {
 	t.Run("VerifyVnet", func(t *testing.T) {
@@ -85,7 +89,8 @@ func TestVirtualNetwork(t *testing.T) {
 		}
 
 		clientSetup := &ClientSetup{SubscriptionID: subscriptionID}
-		clientSetup.InitializeNetworkClients(t, cred)
+		clientSetup.InitializeVirtualNetworkClient(t, cred)
+		clientSetup.InitializeSubnetsClient(t, cred)
 
 		vnet := vnetDetails.GetVnet(t, clientSetup.VirtualNetworkClient)
 		vnetDetails.Subnets = vnetDetails.GetSubnets(t, clientSetup.SubnetsClient)
