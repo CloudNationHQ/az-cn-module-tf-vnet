@@ -137,41 +137,32 @@ func verifyVirtualNetwork(t *testing.T, details *VnetDetails, vnet *armnetwork.V
 func verifySubnetsExist(t *testing.T, setup *ClientSetup, vnetDetails *VnetDetails, tfOpts *terraform.Options) {
 	t.Helper()
 
-	pager := setup.SubnetsClient.NewListPager(vnetDetails.ResourceGroupName, vnetDetails.Name, nil)
+	subnetsData := vnetDetails.GetSubnets(t, setup.SubnetsClient)
 
 	subnetsOutput := terraform.OutputMap(t, tfOpts, "subnets")
 	require.NotEmpty(t, subnetsOutput, "Subnets output is empty")
 
-	for {
-		page, err := pager.NextPage(context.Background())
-		require.NoError(t, err, "Failed to list subnets")
+	for _, subnetData := range subnetsData {
+		subnetName := subnetData.Name
+		assert.NotEmpty(
+			t,
+			subnetName,
+			"Subnet name not found in Azure response",
+		)
 
-		for _, subnet := range page.Value {
-			subnetName :=  *subnet.Name
-			assert.NotEmpty(
-				t,
-				subnetName,
-				"Subnet name not found in Azure response",
-			)
+		_, exists := subnetsOutput[subnetName]
+		assert.True(
+			t,
+			exists,
+			"Subnet name %s not found in Terraform output",
+			subnetName,
+		)
 
-			_, exists := subnetsOutput[subnetName]
-			assert.True(
-				t,
-				exists,
-				"Subnet name %s not found in Terraform output",
-				subnetName,
-			)
-
-			assert.NotNil(
-				t,
-				subnet.Properties.NetworkSecurityGroup,
-				"No network security group association found for subnet %s",
-				subnetName,
-			)
-		}
-
-		if page.NextLink == nil || len(*page.NextLink) == 0 {
-			break
-		}
+		assert.NotEmpty(
+			t,
+			subnetData.NetworkSecurityGroupID,
+			"No network security group association found for subnet %s",
+			subnetName,
+		)
 	}
 }
