@@ -147,13 +147,27 @@ func verifySubnetsExist(t *testing.T, setup *ClientSetup, vnetDetails *VnetDetai
 		require.NoError(t, err, "Failed to list subnets")
 
 		for _, subnet := range page.Value {
-			subnetName := *subnet.Name
-			assert.NotEmpty(t, subnetName, "Subnet name not found in Azure response")
+			subnetName :=  *subnet.Name
+			assert.NotEmpty(
+				t,
+				subnetName,
+				"Subnet name not found in Azure response",
+			)
 
 			_, exists := subnetsOutput[subnetName]
-			assert.True(t, exists, "Subnet name %s not found in Terraform output", subnetName)
+			assert.True(
+				t,
+				exists,
+				"Subnet name %s not found in Terraform output",
+				subnetName,
+			)
 
-			assert.NotNil(t, subnet.Properties.NetworkSecurityGroup, "No network security group association found for subnet %s", subnetName)
+			assert.NotNil(
+				t,
+				subnet.Properties.NetworkSecurityGroup,
+				"No network security group association found for subnet %s",
+				subnetName,
+			)
 		}
 
 		if page.NextLink == nil || len(*page.NextLink) == 0 {
