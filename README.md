@@ -42,8 +42,6 @@ module "network" {
 }
 ```
 
-[```full example```](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mssql)
-
 ## Usage: endpoints
 
 ```hcl
@@ -223,13 +221,12 @@ module "vhub-connection" {
 
 ## Examples
 
-- [complete](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mysql)
-- [multiple](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-oracle)
-- [endpoints](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-postgres)
-- [delegations](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/enhanced-monitoring)
-- [network security group and rules](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-mysql)
-- [route tables](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-postgres)
-- [virtual hub connection](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/s3-import-mysql)
+- [multiple virtual networks](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-oracle)
+- [virtual network with multiple endpoints](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-postgres)
+- [virtual network with multiple delegations and actions](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/enhanced-monitoring)
+- [subnet with network security group and multiple rules](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-mysql)
+- [subnet with route table and multiple routes ](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-postgres)
+- [virtual network using virtual hub connection](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/s3-import-mysql)
 
 ## Resources
 
