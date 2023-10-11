@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.12.0...v0.13.0) (2023-10-11)
+
+
+### Features
+
+* add optional virtual hub connection sub module ([#52](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/52)) ([2802a40](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/2802a40d27ba2c02f2f13901c2f293ab9810ffe9))
+* **deps:** bump github.com/gruntwork-io/terratest in /tests ([#47](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/47)) ([776f6f9](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/776f6f98d8536eb66ba02f574a8d3f269b992f9e))
+
 ## [0.12.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.11.0...v0.12.0) (2023-09-18)
 
 
