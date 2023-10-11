@@ -16,7 +16,7 @@ module "rg" {
 }
 
 module "network" {
-  source = "../../"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   naming = local.naming
 
@@ -24,11 +24,27 @@ module "network" {
     name          = module.naming.virtual_network.name
     location      = module.rg.groups.demo.location
     resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
+    cidr          = ["10.19.0.0/16"]
 
     subnets = {
-      sn1 = { cidr = ["10.18.1.0/24"] }
-      sn2 = { cidr = ["10.18.2.0/24"] }
+      sn1 = {
+        cidr = ["10.19.1.0/24"]
+      }
     }
+  }
+}
+
+module "vhub-connection" {
+  source = "../../modules/vhub-connection"
+
+  providers = {
+    azurerm = azurerm.connectivity
+  }
+
+  virtual_hub = {
+    name          = "vhub-westeurope"
+    resourcegroup = "rg-vwan-shared"
+    connection    = module.naming.virtual_hub_connection.name
+    vnet          = module.network.vnet.id
   }
 }

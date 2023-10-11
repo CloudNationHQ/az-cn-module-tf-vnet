@@ -12,11 +12,12 @@ A primary goal is to utilize keys and values in the object that correspond to th
 
 ## Features
 
-- an individual network security group for each subnet, with the ability to handle multiple rules
+- dedicated network security group for each subnet, capable of managing multiple rules
 - support for multiple service endpoints and delegations, including actions
 - utilization of terratest for robust validation
 - route table support with multiple user defined routes
 - association of multiple subnets with a single route table
+- optional virtual hub connections for enhanced network integration
 
 The below examples shows the usage when consuming the module:
 
@@ -200,6 +201,24 @@ module "network" {
 }
 ```
 
+## Usage: virtual hub connection
+
+```hcl
+module "vhub-connection" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet/vhub-connection"
+  providers = {
+    azurerm = azurerm.connectivity
+  }
+
+  virtual_hub = {
+    name          = "vhub-westeurope"
+    resourcegroup = "rg-vwan-shared"
+    connection    = module.naming.virtual_hub_connection.name
+    vnet          = module.network.vnet.id
+  }
+}
+```
+
 ## Resources
 
 | Name | Type |
@@ -211,6 +230,7 @@ module "network" {
 | [azurerm_subnet_network_security_group_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
 | [azurerm_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
 | [azurerm_subnet_route_table_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
+| [azurerm_virtual_hub_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) | resource |
 
 ## Inputs
 
