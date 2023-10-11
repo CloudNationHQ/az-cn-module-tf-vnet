@@ -42,7 +42,7 @@ module "network" {
 }
 ```
 
-- [full example](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mssql)
+```[full example](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mssql)```
 
 ## Usage: endpoints
 
