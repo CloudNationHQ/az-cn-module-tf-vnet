@@ -219,15 +219,6 @@ module "vhub-connection" {
 }
 ```
 
-## Examples
-
-- [multiple virtual networks](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-oracle)
-- [virtual network with multiple endpoints](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-postgres)
-- [virtual network with multiple delegations and actions](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/enhanced-monitoring)
-- [subnet with network security group and multiple rules](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-mysql)
-- [subnet with route table and multiple routes ](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-postgres)
-- [virtual network using virtual hub connection](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/s3-import-mysql)
-
 ## Resources
 
 | Name | Type |
@@ -255,6 +246,15 @@ module "vhub-connection" {
 | `vnet` | contains all vnet configuration |
 | `subnets` | contains all subnets configuration |
 | `subscriptionId` | contains the current subsriptionId |
+
+## Examples
+
+- [multiple virtual networks](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/multiple/main.tf)
+- [virtual network using multiple service endpoints](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/service-endpoints/main.tf)
+- [virtual network using multiple delegations and actions](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/delegations/main.tf)
+- [subnet with network security group and multiple rules](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/nsg-rules/main.tf)
+- [subnet with route table and multiple routes ](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/routes/main.tf)
+- [virtual network using virtual hub connection](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/vhub-connection/main.tf)
 
 ## Testing
 
