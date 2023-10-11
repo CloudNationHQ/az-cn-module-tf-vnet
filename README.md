@@ -42,6 +42,8 @@ module "network" {
 }
 ```
 
+- [full example](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mssql)
+
 ## Usage: endpoints
 
 ```hcl
@@ -221,7 +223,6 @@ module "vhub-connection" {
 
 ## Examples
 
-- [simple](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mssql)
 - [complete](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mysql)
 - [multiple](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-oracle)
 - [endpoints](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-postgres)
