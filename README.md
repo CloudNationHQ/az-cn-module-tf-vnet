@@ -219,6 +219,17 @@ module "vhub-connection" {
 }
 ```
 
+## Examples
+
+- [simple](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mssql)
+- [complete](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-mysql)
+- [multiple](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-oracle)
+- [endpoints](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/complete-postgres)
+- [delegations](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/enhanced-monitoring)
+- [network security group and rules](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-mysql)
+- [route tables](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/replica-postgres)
+- [virtual hub connection](https://github.com/terraform-aws-modules/terraform-aws-rds/tree/master/examples/s3-import-mysql)
+
 ## Resources
 
 | Name | Type |
