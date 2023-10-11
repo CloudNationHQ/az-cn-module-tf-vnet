@@ -206,6 +206,7 @@ module "network" {
 ```hcl
 module "vhub-connection" {
   source = "github.com/cloudnationhq/az-cn-module-tf-vnet/vhub-connection"
+
   providers = {
     azurerm = azurerm.connectivity
   }
