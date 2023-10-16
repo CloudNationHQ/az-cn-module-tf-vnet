@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.13.0...v0.14.0) (2023-10-16)
+
+
+### Features
+
+* cleanup redundant provider blocks in example usages ([#54](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/54)) ([7ccdd16](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/7ccdd1669f89edf27fd81adf0e3eb3f91b966dc8))
+* **deps:** bump golang.org/x/net from 0.14.0 to 0.17.0 in /tests ([#53](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/53)) ([776e691](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/776e69177c0c9ae0c3bca24c3516971195c91932))
+
 ## [0.13.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.12.0...v0.13.0) (2023-10-11)
 
 
