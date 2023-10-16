@@ -244,8 +244,8 @@ module "vhub-connection" {
 
 | Name | Description |
 | :-- | :-- |
-| `vnet` | contains all vnet configuration |
-| `subnets` | contains all subnets configuration |
+| `vnet` | vnet setup details |
+| `subnets` | subnet configuration specifics |
 | `subscriptionId` | contains the current subsriptionId |
 
 ## Examples
