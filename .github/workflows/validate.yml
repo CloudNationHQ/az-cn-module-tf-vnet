@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    uses: cloudnationhq/az-cn-shared-tf-workflows/.github/workflows/validate.yml@main
+    uses: cloudnationhq/az-cn-shared-tf-workflows/.github/workflows/validate.yml@feat/fix-registry-url-check
     #test: delegations
     secrets:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
