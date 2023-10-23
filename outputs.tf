@@ -3,7 +3,8 @@ output "vnet" {
 }
 
 output "subnets" {
-  value = azurerm_subnet.subnets
+  # value = azurerm_subnet.subnets
+  value = module.subnets.subnets
 }
 
 output "subscriptionId" {
