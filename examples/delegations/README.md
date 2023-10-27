@@ -66,6 +66,16 @@ variable "naming" {
 }
 ```
 
+== Requirements
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Version
+|[[requirement_terraform]] <<requirement_terraform,terraform>> |~> 1.0
+|[[requirement_azurerm]] <<requirement_azurerm,azurerm>> |~> 3.61
+|[[requirement_random]] <<requirement_random,random>> |~> 3.5.1
+|===
+
 ## Requirements
 
 | Name | Version |
