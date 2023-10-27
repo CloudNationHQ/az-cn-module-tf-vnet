@@ -95,4 +95,4 @@ variable "naming" {
 
 ## Testing
 
-```make test TF_PATH=delegations```
+make test TF_PATH=delegations
