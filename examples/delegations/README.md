@@ -1,6 +1,4 @@
-This example shows the use of delegations on subnets. Delegations permit specific azure services to operate within a subnet, essentially granting them tailored permissions.
-
-This helps in scenarios where certain services need specialized access to function correctly.
+This example shows the use of delegations on subnets. Delegations permit specific azure services to operate within a subnet, essentially granting them tailored permissions. This helps in scenarios where certain services need specialized access to function correctly.
 
 ## Usage
 
@@ -66,16 +64,6 @@ variable "naming" {
 }
 ```
 
-== Requirements
-
-[cols="a,a",options="header,autowidth"]
-|===
-|Name |Version
-|[[requirement_terraform]] <<requirement_terraform,terraform>> |~> 1.0
-|[[requirement_azurerm]] <<requirement_azurerm,azurerm>> |~> 3.61
-|[[requirement_random]] <<requirement_random,random>> |~> 3.5.1
-|===
-
 ## Requirements
 
 | Name | Version |
@@ -94,13 +82,17 @@ variable "naming" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_naming"></a> [naming](#input\_naming) | n/a | `map(string)` | n/a | yes |
-| <a name="input_vnet"></a> [vnet](#input\_vnet) | n/a | `any` | n/a | yes |
+| <a name="input_naming"></a> [naming](#input\_naming) | contains naming convention | `map(string)` | n/a | yes |
+| <a name="input_vnet"></a> [vnet](#input\_vnet) | describes vnet related configuration | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_subnets"></a> [subnets](#output\_subnets) | n/a |
-| <a name="output_subscriptionId"></a> [subscriptionId](#output\_subscriptionId) | n/a |
-| <a name="output_vnet"></a> [vnet](#output\_vnet) | n/a |
+| <a name="output_subnets"></a> [subnets](#output\_subnets) | subnet configuration specifics |
+| <a name="output_subscriptionId"></a> [subscriptionId](#output\_subscriptionId) | contains the current subscriptionId |
+| <a name="output_vnet"></a> [vnet](#output\_vnet) | vnet setup details |
+
+## Testing
+
+```make test TF_PATH=delegations```
