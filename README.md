@@ -236,11 +236,12 @@ module "vhub-connection" {
 
 ## Inputs
 
-| Name | Description | Type | Required |
-| :-- | :-- | :-- | :-- |
-| `vnet` | describes vnet related configuration | object | yes |
+### <a name="input_vnet"></a> [vnet](#input\_vnet)
 
-Type:
+Description: describes all virtual network related configuration.
+
+Type: `object`
+
 ```hcl
 variable "vnet" {
   type = object({
@@ -293,11 +294,12 @@ variable "vnet" {
 }
 ```
 
-| Name | Description | Type | Required |
-| :-- | :-- | :-- | :-- |
-| `naming` | contains naming convention | string | yes |
+### <a name="input_naming"></a> [naming](#input\_naming)
 
-Type:
+Description: contains naming convention.
+
+Type: `string`
+
 ```hcl
 variable "naming" {
   type = map(string)
