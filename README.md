@@ -249,7 +249,9 @@ module "vhub-connection" {
 | `subnets` | subnet configuration specifics |
 | `subscriptionId` | contains the current subsriptionId |
 
-The below type definition is organized for enhanced understanding of the object. It outlines the object's attributes and relationships, making its use more straightforward.
+## Types
+
+The below definition is organized for enhanced understanding of the object. It outlines the object's attributes and relationships, making its use more straightforward.
 
 ```hcl
 variable "vnet" {
