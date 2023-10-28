@@ -241,6 +241,14 @@ module "vhub-connection" {
 | `vnet` | describes vnet related configuration | object | yes |
 | `naming` | contains naming convention | string | yes |
 
+## Outputs
+
+| Name | Description |
+| :-- | :-- |
+| `vnet` | vnet setup details |
+| `subnets` | subnet configuration specifics |
+| `subscriptionId` | contains the current subsriptionId |
+
 The type definition is structured as follows:
 
 ```hcl
@@ -300,14 +308,6 @@ variable "naming" {
   type = map(string)
 }
 ```
-
-## Outputs
-
-| Name | Description |
-| :-- | :-- |
-| `vnet` | vnet setup details |
-| `subnets` | subnet configuration specifics |
-| `subscriptionId` | contains the current subsriptionId |
 
 ## Examples
 
