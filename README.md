@@ -249,7 +249,7 @@ module "vhub-connection" {
 | `subnets` | subnet configuration specifics |
 | `subscriptionId` | contains the current subsriptionId |
 
-The type definition is structured as follows:
+The below type definition is organized for enhanced understanding of the object. It outlines the object's attributes and relationships, making its use more straightforward.
 
 ```hcl
 variable "vnet" {
@@ -284,7 +284,6 @@ variable "vnet" {
         destination_address_prefix : optional(string)
         destination_address_prefixes : optional(list(string))
       })))
-      name : optional(string)
       nsg : optional(object({
         name : optional(string)
       }))

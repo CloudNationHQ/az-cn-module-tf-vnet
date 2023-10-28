@@ -35,7 +35,6 @@ variable "vnet" {
         destination_address_prefix : optional(string)
         destination_address_prefixes : optional(list(string))
       })))
-      name : optional(string)
       nsg : optional(object({
         name : optional(string)
       }))
