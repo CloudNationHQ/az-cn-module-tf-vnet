@@ -223,22 +223,22 @@ module "vhub-connection" {
 
 ## Resources
 
-- [azurerm_virtual_network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) (resource)
-- [azurerm_virtual_network_dns_servers](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_dns_servers) (resource)
-- [azurerm_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) (resource)
-- [azurerm_network_security_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) (resource)
-- [azurerm_subnet_network_security_group_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) (resource)
-- [azurerm_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) (resource)
-- [azurerm_subnet_route_table_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) (resource)
-- [azurerm_virtual_hub_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) (resource)
+| Name | Type |
+| :-- | :-- |
+| [azurerm_virtual_network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
+| [azurerm_virtual_network_dns_servers](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_dns_servers) | resource |
+| [azurerm_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
+| [azurerm_network_security_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
+| [azurerm_subnet_network_security_group_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
+| [azurerm_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
+| [azurerm_subnet_route_table_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
+| [azurerm_virtual_hub_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) | resource |
 
 ## Inputs
 
-### <a name="input_vnet"></a> [vnet](#input\_vnet)
-
-Description: describes all virtual network related configuration.
-
-Type: `object`
+| Name | Description | Type | Required |
+| :-- | :-- | :-- | :-- |
+| `vnet` | describes vnet related configuration | object | yes |
 
 ```hcl
 variable "vnet" {
@@ -292,11 +292,9 @@ variable "vnet" {
 }
 ```
 
-### <a name="input_naming"></a> [naming](#input\_naming)
-
-Description: contains naming convention.
-
-Type: `string`
+| Name | Description | Type | Required |
+| :-- | :-- | :-- | :-- |
+| `naming` | contains naming convention | string | yes |
 
 ```hcl
 variable "naming" {
@@ -306,17 +304,11 @@ variable "naming" {
 
 ## Outputs
 
-### <a name="output_vnet"></a> [vnet](#output\_vnet)
-
-Description: vnet setup details
-
-### <a name="output_subnets"></a> [subnets](#output\_subnets)
-
-Description: subnet configuration specifics.
-
-### <a name="output_subscriptionId"></a> [subscriptionId](#output\_subscriptionId)
-
-Description: contains the current subscription id.
+| Name | Description |
+| :-- | :-- |
+| `vnet` | vnet setup details |
+| `subnets` | subnet configuration specifics |
+| `subscriptionId` | contains the current subsriptionId |
 
 ## Examples
 
