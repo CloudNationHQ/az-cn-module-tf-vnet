@@ -42,6 +42,91 @@ module "network" {
 }
 ```
 
+## Usage: endpoints
+
+```hcl
+module "network" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+
+  naming = local.naming
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+
+    subnets = {
+      demo = {
+        cidr = ["10.18.3.0/24"]
+        endpoints = [
+          "Microsoft.Storage",
+          "Microsoft.Sql"
+        ]
+      }
+    }
+  }
+}
+```
+
+## Usage: delegations
+
+```hcl
+module "network" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+
+  naming = local.naming
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+
+    subnets = {
+      sn1 = {
+        cidr = ["10.18.1.0/24"]
+        delegations = {
+          sql = {
+            name = "Microsoft.Sql/managedInstances"
+            actions = [
+              "Microsoft.Network/virtualNetworks/subnets/join/action",
+              "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+              "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action",
+            ]
+          }
+        }
+      }
+      sn2 = {
+        cidr = ["10.18.2.0/24"]
+        delegations = {
+          web = { name = "Microsoft.Web/serverFarms" }
+        }
+      }
+    }
+  }
+}
+```
+
+```hcl
+variable "vnet" {
+  type = object({
+    name          = string
+    location      = string
+    resourcegroup = string
+    cidr          = list(string)
+
+    subnets = optional(map(object({
+      cidr       = list(string)
+      delegations = optional(map(object({
+        name    = string
+        actions = optional(list(string), null)
+      })), null)
+    })), null)
+  })
+}
+```
+
 ## Usage: nsg rules
 
 ```hcl
@@ -64,6 +149,71 @@ module "network" {
           { name = "myhttps", priority = 100, direction = "Inbound", access = "Allow", protocol = "Tcp", source_port_range = "*", destination_port_range = "443", source_address_prefix = "10.151.1.0/24", destination_address_prefix = "*" },
           { name = "mysql", priority = 200, direction = "Inbound", access = "Allow", protocol = "Tcp", source_port_range = "*", destination_port_range = "3306", source_address_prefix = "10.0.0.0/24", destination_address_prefix = "*" }
         ]
+      }
+    }
+  }
+}
+```
+
+## Usage: route table
+
+```hcl
+module "network" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+
+  naming = local.naming
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+
+    subnets = {
+      sn1 = {
+        cidr = ["10.18.1.0/24"]
+        routes = {
+          rt1 = {
+            address_prefix = "Storage"
+            next_hop_type  = "Internet"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In situations where several subnets should share the same route table, the following configuration can be employed:
+
+```hcl
+module "network" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+
+  naming = local.naming
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+
+    subnets = {
+      sn1 = {
+        cidr        = ["10.18.1.0/24"]
+        route_table = "shd"
+      },
+      sn2 = {
+        cidr        = ["10.18.2.0/24"]
+        route_table = "shd"
+      }
+    }
+
+    route_tables = {
+      shd = {
+        routes = {
+          rt1 = { address_prefix = "0.0.0.0/0", next_hop_type = "Internet" }
+        }
       }
     }
   }
