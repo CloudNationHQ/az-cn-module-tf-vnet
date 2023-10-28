@@ -239,7 +239,6 @@ module "vhub-connection" {
 | Name | Description | Type | Required |
 | :-- | :-- | :-- | :-- |
 | `vnet` | describes vnet related configuration | object | yes |
-| `naming` | contains naming convention | string | yes |
 
 ### Types
 
@@ -294,6 +293,10 @@ variable "vnet" {
   })
 }
 ```
+
+| Name | Description | Type | Required |
+| :-- | :-- | :-- | :-- |
+| `naming` | contains naming convention | string | yes |
 
 ```hcl
 variable "naming" {
