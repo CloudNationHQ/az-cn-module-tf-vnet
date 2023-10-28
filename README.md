@@ -241,6 +241,8 @@ module "vhub-connection" {
 | `vnet` | describes vnet related configuration | object | yes |
 | `naming` | contains naming convention | string | yes |
 
+The type definition is structured as follows:
+
 ```hcl
 variable "vnet" {
   type = object({
