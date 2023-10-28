@@ -223,14 +223,14 @@ module "vhub-connection" {
 
 ## Resources
 
-- [azurerm_virtual_network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) (resource)
-- [azurerm_virtual_network_dns_servers](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_dns_servers) (resource)
-- [azurerm_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) (resource)
-- [azurerm_network_security_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) (resource)
-- [azurerm_subnet_network_security_group_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) (resource)
-- [azurerm_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) (resource)
-- [azurerm_subnet_route_table_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) (resource)
-- [azurerm_virtual_hub_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) (resource)
+[azurerm_virtual_network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) (resource)
+[azurerm_virtual_network_dns_servers](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_dns_servers) (resource)
+[azurerm_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) (resource)
+[azurerm_network_security_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) (resource)
+[azurerm_subnet_network_security_group_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) (resource)
+[azurerm_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) (resource)
+[azurerm_subnet_route_table_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) (resource)
+[azurerm_virtual_hub_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) (resource)
 
 ## Inputs
 
@@ -320,12 +320,12 @@ Description: contains the current subscription id.
 
 ## Examples
 
-- [multiple virtual networks](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/multiple/main.tf)
-- [virtual network using multiple service endpoints](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/service-endpoints/main.tf)
-- [virtual network using multiple delegations and actions](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/delegations/main.tf)
-- [subnet with network security group and multiple rules](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/nsg-rules/main.tf)
-- [subnet with route table and multiple routes ](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/routes/main.tf)
-- [virtual network using virtual hub connection](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/vhub-connection/main.tf)
+[multiple virtual networks](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/multiple/main.tf)
+[virtual network using multiple service endpoints](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/service-endpoints/main.tf)
+[virtual network using multiple delegations and actions](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/delegations/main.tf)
+[subnet with network security group and multiple rules](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/nsg-rules/main.tf)
+[subnet with route table and multiple routes ](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/routes/main.tf)
+[virtual network using virtual hub connection](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/vhub-connection/main.tf)
 
 ## Testing
 
