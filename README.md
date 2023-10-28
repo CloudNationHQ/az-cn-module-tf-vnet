@@ -240,8 +240,7 @@ module "vhub-connection" {
 | :-- | :-- | :-- | :-- |
 | `vnet` | describes vnet related configuration | object | yes |
 
-### Types
-
+Type:
 ```hcl
 variable "vnet" {
   type = object({
@@ -298,6 +297,7 @@ variable "vnet" {
 | :-- | :-- | :-- | :-- |
 | `naming` | contains naming convention | string | yes |
 
+Type:
 ```hcl
 variable "naming" {
   type = map(string)
