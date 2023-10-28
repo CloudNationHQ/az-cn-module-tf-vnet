@@ -109,22 +109,13 @@ module "network" {
 ```
 
 ```hcl
-variable "vnet" {
-  type = object({
-    name          = string
-    location      = string
-    resourcegroup = string
-    cidr          = list(string)
-
-    subnets = optional(map(object({
-      cidr       = list(string)
-      delegations = optional(map(object({
-        name    = string
-        actions = optional(list(string), null)
-      })), null)
-    })), null)
-  })
-}
+subnets = optional(map(object({
+  cidr = list(string)
+  delegations = optional(map(object({
+    name    = string
+    actions = optional(list(string), null)
+  })), null)
+})), null)
 ```
 
 ## Usage: nsg rules
