@@ -47,15 +47,6 @@ A primary goal is to utilize keys and values in the object that correspond to th
 | `subnets` | subnet configuration specifics |
 | `subscriptionId` | contains the current subsriptionId |
 
-## Examples
-
-- [multiple virtual networks](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/multiple/main.tf)
-- [virtual network using multiple service endpoints](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/service-endpoints/main.tf)
-- [virtual network using multiple delegations and actions](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/delegations/main.tf)
-- [subnet with network security group and multiple rules](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/nsg-rules/main.tf)
-- [subnet with route table and multiple routes ](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/routes/main.tf)
-- [virtual network using virtual hub connection](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/vhub-connection/main.tf)
-
 ## Testing
 
 As a prerequirement, please ensure that both go and terraform are properly installed on your system.
