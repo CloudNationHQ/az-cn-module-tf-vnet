@@ -77,7 +77,11 @@ locals {
     }
   }
 }
+```
 
+The below maps resource types to their corresponding outputs from the naming module, ensuring consistent naming conventions across resources
+
+```hcl
 locals {
   naming = {
     # lookup outputs to have consistent naming
