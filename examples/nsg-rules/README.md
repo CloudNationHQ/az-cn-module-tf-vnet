@@ -1,3 +1,5 @@
+This example highlights using network security groups in a subnet. They regulate traffic, enhancing security by permitting necessary access and blocking unwanted traffic.
+
 ## Usage: nsg rules
 
 ```hcl
