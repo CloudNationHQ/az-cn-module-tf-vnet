@@ -1,3 +1,40 @@
+This example illustrates the default virtual network setup, in its simplest form. It lays out a foundational network structure, guaranteeing protected and contained communication within its scope.
+
+## Usage: simple
+
+```hcl
+module "network" {
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+
+  naming = local.naming
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+  }
+}
+```
+
+## Usage: multiple
+
+Additionally, for certain scenarios, the example below highlights the ability to use multiple virtual networks, enabling a broader network setup.
+
+```hcl
+module "network" {
+  source = "../../"
+
+  for_each = local.vnets
+
+  naming = local.naming
+  vnet   = each.value
+}
+```
+
+The module uses a local to iterate, generating a virtual network for each key.
+
+```hcl
 locals {
   vnets = {
     vnet1 = {
@@ -40,7 +77,11 @@ locals {
     }
   }
 }
+```
 
+The below maps resource types to their corresponding outputs from the naming module, ensuring consistent naming conventions across resources
+
+```hcl
 locals {
   naming = {
     # lookup outputs to have consistent naming
@@ -49,3 +90,4 @@ locals {
 
   naming_types = ["subnet", "network_security_group"]
 }
+```

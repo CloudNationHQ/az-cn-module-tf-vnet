@@ -10,6 +10,8 @@ The structure of the module promotes reusability. It's intended to be a repeatab
 
 A primary goal is to utilize keys and values in the object that correspond to the REST API's structure. This enables us to carry out iterations, increasing its practical value as time goes on.
 
+A last key goal is to separate logic from configuration in the module, thereby enhancing its scalability, ease of customization, and manageability.
+
 ## Features
 
 - dedicated network security group for each subnet, capable of managing multiple rules
@@ -19,206 +21,19 @@ A primary goal is to utilize keys and values in the object that correspond to th
 - association of multiple subnets with a single route table
 - optional virtual hub connections for enhanced network integration
 
-The below examples shows the usage when consuming the module:
+## Requirements
 
-## Usage: simple
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.61 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.5.1 |
 
-```hcl
-module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+## Providers
 
-  naming = local.naming
-
-  vnet = {
-    name          = module.naming.virtual_network.name
-    location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
-    subnets = {
-      sn1 = { cidr = ["10.18.1.0/24"] }
-    }
-  }
-}
-```
-
-## Usage: endpoints
-
-```hcl
-module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
-
-  naming = local.naming
-
-  vnet = {
-    name          = module.naming.virtual_network.name
-    location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
-    subnets = {
-      demo = {
-        cidr = ["10.18.3.0/24"]
-        endpoints = [
-          "Microsoft.Storage",
-          "Microsoft.Sql"
-        ]
-      }
-    }
-  }
-}
-```
-
-## Usage: delegations
-
-```hcl
-module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
-
-  naming = local.naming
-
-  vnet = {
-    name          = module.naming.virtual_network.name
-    location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
-    subnets = {
-      sn1 = {
-        cidr = ["10.18.1.0/24"]
-        delegations = {
-          sql = {
-            name = "Microsoft.Sql/managedInstances"
-            actions = [
-              "Microsoft.Network/virtualNetworks/subnets/join/action",
-              "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-              "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action",
-            ]
-          }
-        }
-      }
-      sn2 = {
-        cidr = ["10.18.2.0/24"]
-        delegations = {
-          web = { name = "Microsoft.Web/serverFarms" }
-        }
-      }
-    }
-  }
-}
-```
-
-## Usage: nsg rules
-
-```hcl
-module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
-
-  naming = local.naming
-
-  vnet = {
-    name          = module.naming.virtual_network.name
-    location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
-
-    subnets = {
-      sn1 = {
-        cidr = ["10.18.1.0/24"]
-        rules = [
-          { name = "myhttps", priority = 100, direction = "Inbound", access = "Allow", protocol = "Tcp", source_port_range = "*", destination_port_range = "443", source_address_prefix = "10.151.1.0/24", destination_address_prefix = "*" },
-          { name = "mysql", priority = 200, direction = "Inbound", access = "Allow", protocol = "Tcp", source_port_range = "*", destination_port_range = "3306", source_address_prefix = "10.0.0.0/24", destination_address_prefix = "*" }
-        ]
-      }
-    }
-  }
-}
-```
-
-## Usage: route table
-
-```hcl
-module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
-
-  naming = local.naming
-
-  vnet = {
-    name          = module.naming.virtual_network.name
-    location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
-    subnets = {
-      sn1 = {
-        cidr = ["10.18.1.0/24"]
-        routes = {
-          rt1 = {
-            address_prefix = "Storage"
-            next_hop_type  = "Internet"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-In situations where several subnets should share the same route table, the following configuration can be employed:
-
-```hcl
-module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
-
-  naming = local.naming
-
-  vnet = {
-    name          = module.naming.virtual_network.name
-    location      = module.rg.groups.demo.location
-    resourcegroup = module.rg.groups.demo.name
-    cidr          = ["10.18.0.0/16"]
-
-    subnets = {
-      sn1 = {
-        cidr        = ["10.18.1.0/24"]
-        route_table = "shd"
-      },
-      sn2 = {
-        cidr        = ["10.18.2.0/24"]
-        route_table = "shd"
-      }
-    }
-
-    route_tables = {
-      shd = {
-        routes = {
-          rt1 = { address_prefix = "0.0.0.0/0", next_hop_type = "Internet" }
-        }
-      }
-    }
-  }
-}
-```
-
-## Usage: virtual hub connection
-
-```hcl
-module "vhub-connection" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet/vhub-connection"
-
-  providers = {
-    azurerm = azurerm.connectivity
-  }
-
-  virtual_hub = {
-    name          = "vhub-westeurope"
-    resourcegroup = "rg-vwan-shared"
-    connection    = module.naming.virtual_hub_connection.name
-    vnet          = module.network.vnet.id
-  }
-}
-```
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 3.61 |
 
 ## Resources
 
@@ -232,6 +47,7 @@ module "vhub-connection" {
 | [azurerm_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
 | [azurerm_subnet_route_table_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_virtual_hub_connection](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) | resource |
+| [azurerm_subscription](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 
 ## Inputs
 
@@ -247,15 +63,6 @@ module "vhub-connection" {
 | `vnet` | vnet setup details |
 | `subnets` | subnet configuration specifics |
 | `subscriptionId` | contains the current subsriptionId |
-
-## Examples
-
-- [multiple virtual networks](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/multiple/main.tf)
-- [virtual network using multiple service endpoints](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/service-endpoints/main.tf)
-- [virtual network using multiple delegations and actions](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/delegations/main.tf)
-- [subnet with network security group and multiple rules](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/nsg-rules/main.tf)
-- [subnet with route table and multiple routes ](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/routes/main.tf)
-- [virtual network using virtual hub connection](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/vhub-connection/main.tf)
 
 ## Testing
 

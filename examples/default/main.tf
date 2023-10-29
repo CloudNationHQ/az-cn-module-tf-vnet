@@ -18,8 +18,12 @@ module "rg" {
 module "network" {
   source = "../../"
 
-  for_each = local.vnets
-
   naming = local.naming
-  vnet   = each.value
+
+  vnet = {
+    name          = module.naming.virtual_network.name
+    location      = module.rg.groups.demo.location
+    resourcegroup = module.rg.groups.demo.name
+    cidr          = ["10.18.0.0/16"]
+  }
 }
