@@ -32,7 +32,7 @@ module "network" {
 }
 ```
 
-The module iterates over ```local.vnets```, creating a virtual network for each entry.
+The module uses a local to iterate, generating a virtual network for each key.
 
 ```hcl
 locals {
