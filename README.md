@@ -13,10 +13,15 @@ A primary goal is to utilize keys and values in the object that correspond to th
 ## Features
 
 dedicated network security group for each subnet, capable of managing multiple rules
+
 support for multiple service endpoints and delegations, including actions
+
 utilization of terratest for robust validation
+
 route table support with multiple user defined routes
+
 association of multiple subnets with a single route table
+
 optional virtual hub connections for enhanced network integration
 
 ## Resources
@@ -50,10 +55,15 @@ optional virtual hub connections for enhanced network integration
 ## Examples
 
 [multiple virtual networks](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/multiple/main.tf)
+
 [virtual network using multiple service endpoints](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/service-endpoints/main.tf)
+
 [virtual network using multiple delegations and actions](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/delegations/main.tf)
+
 [subnet with network security group and multiple rules](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/nsg-rules/main.tf)
+
 [subnet with route table and multiple routes ](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/routes/main.tf)
+
 [virtual network using virtual hub connection](https://github.com/cloudnationhq/az-cn-module-tf-vnet/tree/main/examples/vhub-connection/main.tf)
 
 ## Testing
