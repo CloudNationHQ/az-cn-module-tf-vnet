@@ -13,16 +13,6 @@ module "network" {
     location      = module.rg.groups.demo.location
     resourcegroup = module.rg.groups.demo.name
     cidr          = ["10.18.0.0/16"]
-
-    subnets = {
-      demo = {
-        cidr = ["10.18.3.0/24"]
-        endpoints = [
-          "Microsoft.Storage",
-          "Microsoft.Sql"
-        ]
-      }
-    }
   }
 }
 ```
@@ -86,5 +76,14 @@ locals {
       }
     }
   }
+}
+
+locals {
+  naming = {
+    # lookup outputs to have consistent naming
+    for type in local.naming_types : type => lookup(module.naming, type).name
+  }
+
+  naming_types = ["subnet", "network_security_group"]
 }
 ```
