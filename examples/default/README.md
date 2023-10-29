@@ -42,6 +42,8 @@ module "network" {
 }
 ```
 
+The module iterates over ```local.vnets```, creating a virtual network for each entry.
+
 ```hcl
 locals {
   vnets = {
