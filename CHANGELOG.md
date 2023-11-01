@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.15.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.14.0...v0.15.0) (2023-11-01)
+
+
+### Features
+
+* **deps:** bump github.com/Azure/azure-sdk-for-go/sdk/azidentity ([#56](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/56)) ([1ceb66b](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/1ceb66bfd76e788f7510193a93b8e8737344cb22))
+* **deps:** bump google.golang.org/grpc from 1.51.0 to 1.56.3 in /tests ([#61](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/61)) ([4e2a6d5](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/4e2a6d5f5aa9d8c22343dd06e8cce6b181f96ba3))
+* small refactor naming ([#64](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/issues/64)) ([314111a](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/commit/314111abf8971afdf0e83924e3f41f04cbd379fb))
+
 ## [0.14.0](https://github.com/CloudNationHQ/az-cn-module-tf-vnet/compare/v0.13.0...v0.14.0) (2023-10-16)
 
 
