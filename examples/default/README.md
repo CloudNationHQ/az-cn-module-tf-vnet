@@ -4,8 +4,7 @@ This example illustrates the default virtual network setup, in its simplest form
 
 ```hcl
 module "network" {
-  source  = "cloudnationhq/vnet/azure"
-  version = "~> 0.1"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   naming = local.naming
 
@@ -24,8 +23,7 @@ Additionally, for certain scenarios, the example below highlights the ability to
 
 ```hcl
 module "network" {
-  source  = "cloudnationhq/vnet/azure"
-  version = "~> 0.1"
+  source = "../../"
 
   for_each = local.vnets
 

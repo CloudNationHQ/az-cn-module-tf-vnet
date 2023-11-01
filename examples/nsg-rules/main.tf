@@ -16,8 +16,7 @@ module "rg" {
 }
 
 module "network" {
-  source  = "cloudnationhq/vnet/azure"
-  version = "~> 0.1"
+  source = "../../"
 
   naming = local.naming
 

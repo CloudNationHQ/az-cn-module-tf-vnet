@@ -2,8 +2,7 @@
 
 ```hcl
 module "vhub-connection" {
-  source  = "cloudnationhq/vnet/vhub-connecction/azure"
-  version = "~> 0.1"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet/vhub-connection"
 
   providers = {
     azurerm = azurerm.connectivity

@@ -16,8 +16,7 @@ module "rg" {
 }
 
 module "network" {
-  source  = "cloudnationhq/vnet/azure"
-  version = "~> 0.1"
+  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
 
   naming = local.naming
 
@@ -36,8 +35,7 @@ module "network" {
 }
 
 module "vhub-connection" {
-  source  = "cloudnationhq/vnet/vhub-connecction/azure"
-  version = "~> 0.1"
+  source = "../../modules/vhub-connection"
 
   providers = {
     azurerm = azurerm.connectivity
