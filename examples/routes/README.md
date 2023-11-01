@@ -4,7 +4,8 @@ This example underscores the implementation of routes within subnets. Routes dir
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+  source  = "cloudnationhq/vnet/azure"
+  version = "~> 0.1"
 
   naming = local.naming
 
@@ -33,7 +34,8 @@ In situations where several subnets should share the same route table, the follo
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+  source  = "cloudnationhq/vnet/azure"
+  version = "~> 0.1"
 
   naming = local.naming
 

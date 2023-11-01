@@ -16,7 +16,8 @@ module "rg" {
 }
 
 module "network" {
-  source = "../../"
+  source  = "cloudnationhq/vnet/azure"
+  version = "~> 0.1"
 
   naming = local.naming
 
@@ -28,7 +29,9 @@ module "network" {
 
     subnets = {
       sn1 = {
-        cidr = ["10.18.1.0/24"]
+        subnet_name = "sn-demo-testme-01"
+        nsg_name    = "nsg-demo-testme-01"
+        cidr        = ["10.18.1.0/24"]
         rules = [
           { name = "myhttps", priority = 100, direction = "Inbound", access = "Allow", protocol = "Tcp", source_port_range = "*", destination_port_range = "443", source_address_prefix = "10.151.1.0/24", destination_address_prefix = "*" },
           { name = "mysql", priority = 200, direction = "Inbound", access = "Allow", protocol = "Tcp", source_port_range = "*", destination_port_range = "3306", source_address_prefix = "10.0.0.0/24", destination_address_prefix = "*" }
