@@ -4,7 +4,8 @@ This example highlights using network security groups in a subnet. They regulate
 
 ```hcl
 module "network" {
-  source = "github.com/cloudnationhq/az-cn-module-tf-vnet"
+  source  = "cloudnationhq/vnet/azure"
+  version = "~> 0.1"
 
   naming = local.naming
 
